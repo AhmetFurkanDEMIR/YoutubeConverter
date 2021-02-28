@@ -17,9 +17,9 @@ FFmpeg 4.2.4
 
 |        OS      |   Supports  |
 | ---------------| ----------- |
-| Linux (Debian) |     [x]     |
-| MacOS          |     [x]     |
-| Windows        |     [ ]     |
+| Linux (Debian) |      ✓      |
+| MacOS          |      ✓      |
+| Windows        |      x      |
 
 ### **Application video and images**
 
