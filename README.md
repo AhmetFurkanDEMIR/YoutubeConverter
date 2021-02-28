@@ -11,7 +11,9 @@ Youtube video and audio converter developed with Cpp-QT framework. The visual in
 **Requirements**
 
 Qt 5.9.9
+
 Python 3.8.5 (pytube module)
+
 FFmpeg 4.2.4
 
 
