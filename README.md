@@ -3,7 +3,7 @@
 # **YouTube converter with Qt**
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/54184905/109428600-c2b68280-7a08-11eb-9e45-ceb7604582c2.png" />
+  <img src="https://user-images.githubusercontent.com/54184905/109430365-124d7c00-7a12-11eb-8723-ec88a3ca548e.png" />
 </p>
 
 Youtube video and audio converter developed with Cpp-QT framework. The visual interface was written in Qt, the video and audio download process was written in Python. It downloads audio or video files to your computer in high quality from the entered url address. It offers 1080P HD resolution and video support up to 60 frames per second (FPS).
