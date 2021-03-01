@@ -4,9 +4,11 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QLineEdit>
+#include <iostream>
+#include <unistd.h>
 
-extern std::string path;
 extern QString dir;
+extern std::string path;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
