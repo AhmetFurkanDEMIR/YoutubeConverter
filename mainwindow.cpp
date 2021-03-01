@@ -84,15 +84,34 @@ void MainWindow::run(QString a, QPushButton *button, QLineEdit *line){
         button->setText("Downloaded");
     }
 
+    sleep(3);
+    button->setText("Convert and Download");
+
+}
+
+
+void MainWindow::error(QPushButton *button, QLineEdit *line){
+
+
+    line->setText("");
+    button->setText("Error");
+
+    sleep(3);
+    button->setText("Convert and Download");
+
 }
 
 
 // video indirme islemi
 void MainWindow::on_pushButton_clicked()
 {
-    if(ui->pushButton->text()!="Downloading ...")
+
+    QPushButton *button=ui->pushButton;
+    QLineEdit *line=ui->lineEdit;
+
+    if(ui->pushButton->text()!="Downloading " && ui->pushButton->text()!="Downloading ." && ui->pushButton->text()!="Downloading .." && ui->pushButton->text()!="Downloading ..." && ui->pushButton->text()!="Downloading ...." && ui->pushButton->text()!="Error")
     {
-        if(ui->pushButton_2->text()!="Download location"){
+        if(ui->pushButton_2->text()!="Download location" && ui->pushButton_2->text()!="" && ui->pushButton_2->text()!=" "){
 
             if(ui->lineEdit->text()!=""){
 
@@ -113,9 +132,6 @@ void MainWindow::on_pushButton_clicked()
                 QString command;
                 command = "python3 "+QString::fromUtf8(path.c_str())+"/download.py --url "+url+" --quality "+quality+" --fps "+fps+" --path "+dir+" --flag 0";
 
-                QPushButton *button=ui->pushButton;
-                QLineEdit *line=ui->lineEdit;
-
                 ui->pushButton->setText("");
                 std::thread runa(run, command, button, line);
                 runa.detach();
@@ -123,13 +139,15 @@ void MainWindow::on_pushButton_clicked()
             }
 
             else{
-                ui->pushButton->setText("Error");
+                std::thread errora(error,button, line);
+                errora.detach();
             }
 
         }
 
         else{
-            ui->pushButton->setText("Error");
+            std::thread errora(error,button, line);
+            errora.detach();
         }
     }
 
@@ -163,40 +181,37 @@ void MainWindow::on_pushButton_4_clicked()
 void MainWindow::on_pushButton_3_clicked()
 {
 
-    if(ui->pushButton_3->text()!="Downloading ..."){
+    QPushButton *button_2=ui->pushButton_3;
+    QLineEdit *line_2=ui->lineEdit_2;
 
-        if(ui->pushButton_4->text()!="Download location"){
+    if(ui->pushButton_3->text()!="Downloading " && ui->pushButton_3->text()!="Downloading ." && ui->pushButton_3->text()!="Downloading .." && ui->pushButton_3->text()!="Downloading ..." && ui->pushButton_3->text()!="Downloading ...." && ui->pushButton_3->text()!="Error"){
+
+        if(ui->pushButton_4->text()!="Download location" && ui->pushButton_4->text()!="" && ui->pushButton_4->text()!=" "){
 
             if(ui->lineEdit_2->text()!=""){
 
                 QString url=ui->lineEdit_2->text();
                 url.replace('&', '*');
 
-                QString command = "python3 "+QString::fromUtf8(path.c_str())+"/download.py --url "+url+" --quality 0"+" --fps 0"+" --path "+dir+" --flag 1";
-
-                QPushButton *button=ui->pushButton_3;
-                QLineEdit *line=ui->lineEdit_2;
+                QString command = "python3 "+QString::fromUtf8(path.c_str())+"/download.py --url "+url+" --quality 720"+" --fps 30"+" --path "+dir+" --flag 1";
 
                 ui->pushButton_3->setText("");
-                std::thread runa(run, command, button, line);
+                std::thread runa(run, command, button_2, line_2);
                 runa.detach();
 
-                ui->pushButton_3->setText("Downloaded");
-                ui->lineEdit_2->setText("");
             }
 
             else{
-                ui->pushButton_3->setText("Error");
+
+                std::thread errora(error,button_2, line_2);
+                errora.detach();
             }
         }
 
         else{
-            ui->pushButton_3->setText("Error");
+            std::thread errora(error,button_2, line_2);
+            errora.detach();
         }
-    }
-
-    else{
-        ui->pushButton_3->setText("Error");
     }
 
 }
