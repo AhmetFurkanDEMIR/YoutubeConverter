@@ -1,9 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QFileDialog>
-#include <iostream>
 #include <thread>
-#include <unistd.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -18,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_7->setPixmap(pix);
 
 }
+
 
 MainWindow::~MainWindow()
 {
@@ -68,6 +67,7 @@ void MainWindow::buttona(QPushButton *button){
     }
 
 }
+
 
 // python uzerinden videoyu veya sesi indirme islemi
 void MainWindow::run(QString a, QPushButton *button, QLineEdit *line){
@@ -129,8 +129,7 @@ void MainWindow::on_pushButton_clicked()
                 quality.remove('D');
                 quality.remove(' ');
 
-                QString command;
-                command = "python3 "+QString::fromUtf8(path.c_str())+"/download.py --url "+url+" --quality "+quality+" --fps "+fps+" --path "+dir+" --flag 0";
+                QString command = "python3 \""+QString::fromUtf8(path.c_str())+"/download.py\" --url "+url+" --quality "+quality+" --fps "+fps+" --path "+dir+" --flag 0";
 
                 ui->pushButton->setText("");
                 std::thread runa(run, command, button, line);
@@ -193,7 +192,7 @@ void MainWindow::on_pushButton_3_clicked()
                 QString url=ui->lineEdit_2->text();
                 url.replace('&', '*');
 
-                QString command = "python3 "+QString::fromUtf8(path.c_str())+"/download.py --url "+url+" --quality 720"+" --fps 30"+" --path "+dir+" --flag 1";
+                QString command = "python3 \""+QString::fromUtf8(path.c_str())+"/download.py\" --url "+url+" --quality 720"+" --fps 30"+" --path "+dir+" --flag 1";
 
                 ui->pushButton_3->setText("");
                 std::thread runa(run, command, button_2, line_2);
