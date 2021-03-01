@@ -1,9 +1,10 @@
 #include "mainwindow.h"
 #include <QApplication>
 #include <QStyleFactory>
+#include<stdio.h>
 
 QString dir="";
-std::string path(__FILE__);
+std::string path=get_current_dir_name();
 
 int main(int argc, char *argv[])
 {
@@ -30,7 +31,26 @@ int main(int argc, char *argv[])
 
     qApp->setPalette(darkPalette);
 
-    path = path.substr(0, path.find_last_of("\\/"));
+    FILE *file;
+    std::string path_temp=path+"/download.py";
+
+    if (file = fopen(path_temp.c_str(), "r")) {
+        fclose(file);
+    }
+    else {
+        system("wget https://ahmetfurkandemir.s3.amazonaws.com/download.py");
+
+    }
+
+    path_temp=path+"/yt.png";
+
+    if (file = fopen(path_temp.c_str(), "r")) {
+        fclose(file);
+    }
+    else {
+        system("wget https://ahmetfurkandemir.s3.amazonaws.com/yt.png");
+
+    }
 
     MainWindow w;
     w.show();
