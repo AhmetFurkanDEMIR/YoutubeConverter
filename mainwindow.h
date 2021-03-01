@@ -29,7 +29,8 @@ private slots:
 
     void on_pushButton_3_clicked();
     static void run(QString a, QPushButton *button, QLineEdit *line);
-    static void buttona(QPushButton *button);
+    static void buttona(QPushButton *button_temp);
+    static void error(QPushButton *button, QLineEdit *line);
 
 private:
     Ui::MainWindow *ui;
