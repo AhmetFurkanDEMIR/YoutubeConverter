@@ -80,7 +80,7 @@ void MainWindow::run(QString a, QPushButton *button, QLineEdit *line){
     system(qPrintable(a));
     line->setText("");
 
-    for(i=0;i<20;i++){
+    for(i=0;i<50;i++){
         button->setText("Downloaded");
     }
 
